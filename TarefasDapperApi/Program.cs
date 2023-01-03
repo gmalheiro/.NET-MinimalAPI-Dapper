@@ -1,15 +1,12 @@
-namespace TarefasDapperApi
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+using TarefasDapperApi.Endpoints;
+using TarefasDapperApi.Extensions;
 
-            app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
 
-            app.Run();
-        }
-    }
-}
+builder.AddPersistance();
+
+var app = builder.Build();
+
+app.MapTarefasEndpoints();
+
+app.Run();
